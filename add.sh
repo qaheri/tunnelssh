@@ -2,9 +2,9 @@ read -p "Enter Destination IP: " ip
 read -p "Enter Destination Port: " dport
 read -p "Enter Local Tunnel Port: " tport
 ssh-keygen -t rsa -N '' <<< $'\n\n\n'
-ssh-copy-id -i ~/.ssh/id_rsa.pub -p22 root@$ip <<< $'yes\n'
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p$dport root@$ip <<< $'yes\n'
 
-ssh -p 22 root@$ip << EOF
+ssh -p $dport root@$ip << EOF
 
     if ! grep -q "Port $dport" /etc/ssh/sshd_config; then
         sed -i "1s/^/Port $dport\n/" /etc/ssh/sshd_config
