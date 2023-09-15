@@ -2,7 +2,7 @@ read -p "Enter Destination IP: " ip
 read -p "Enter Destination Port: " dport
 read -p "Enter Local Tunnel Port: " tport
 ssh-keygen -t rsa -N '' <<< $'\n\n\n'
-ssh-copy-id -i ~/.ssh/id_rsa.pub -p$dport root@$ip <<< $'yes\n'
+ssh-copy-id -i ~/.ssh/id_rsa.pub -p$dport root@$ip
 
 ssh -p $dport root@$ip << EOF
 
