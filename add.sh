@@ -19,9 +19,9 @@ EOF
 
 ssh -p$dport -f -N -L *:$tport:localhost:$dport root@$ip
 
-# if ! crontab -l | grep -q "*/5 * * * * ssh -p$dport -f -N -L *:$tport:localhost:$dport root@$ip"; then
-#     (crontab -l ; echo "*/5 * * * * ssh -p$dport -f -N -L *:$tport:localhost:$dport root@$ip") | crontab -
-#     echo "Added command to crontab"
-# else
-#     echo "Command already exists in crontab"
-# fi
+if ! crontab -l | grep -q "*/5 * * * * ssh -p$dport -f -N -L *:$tport:localhost:$dport root@$ip"; then
+    (crontab -l ; echo "*/5 * * * * ssh -p$dport -f -N -L *:$tport:localhost:$dport root@$ip") | crontab -
+    echo "Added command to crontab"
+else
+    echo "Command already exists in crontab"
+fi
